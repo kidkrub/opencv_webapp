@@ -5,6 +5,16 @@ import cv2
 
 def opencv_dface(path):
     img = cv2.imread(path, 1)
+    factor = 1
+    if img.shape[1] > 640:
+        factor = 640.0 / img.shape[1]
+    elif img.shape[0] > 480:
+        factor = 480.0 / img.shape[0]
+
+    if factor != 1:
+        w = img.shape[1] * factor
+        h = img.shape[0] * factor
+        img = cv2.resize(img, (int(w), int(h)))
 
     if (type(img) is np.ndarray):
         print(img.shape)

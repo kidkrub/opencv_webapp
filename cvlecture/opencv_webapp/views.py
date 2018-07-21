@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from .forms import ImageUploadForm
 from django.conf import settings
 from .opencv_dface import opencv_dface
+from .models import ImageUploadModel
 
 
 def first_view(request):
@@ -29,6 +30,11 @@ def uimage(request):
 def dface(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
+        if ImageUploadModel.objects.all().count() > 2:
+            obs = ImageUploadModel.objects.all().first()
+            if obs:
+                obs.delete()
+
         if form.is_valid():
             post = form.save(commit=False)
             post.save()

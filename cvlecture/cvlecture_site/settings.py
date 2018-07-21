@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^*8qwc&%eks-cp5ioy3w^(rmp)w)oyy-+nivstx0ejvi=cek7s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.codeanyapp.com', '0.0.0.0', '*']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -76,9 +78,13 @@ WSGI_APPLICATION = 'cvlecture_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': 'kidkrub$default',
+          'USER': 'kidkrub',
+          'PASSWORD': 'i18@UeHvxk6k',
+          'HOST': 'kidkrub.mysql.pythonanywhere-services.com',
+          'PORT': ''
+     }
 }
 
 
@@ -122,4 +128,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT_URL = '.'
+MEDIA_ROOT_URL = '/home/kidkrub/opencv_webapp/cvlecture'
